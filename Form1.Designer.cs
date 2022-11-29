@@ -37,6 +37,8 @@ namespace EmptyStandbyList
             this.intervalLbl = new System.Windows.Forms.Label();
             this.intervalTb = new System.Windows.Forms.TextBox();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenu1 = new System.Windows.Forms.ContextMenu();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // statusBtn
@@ -82,9 +84,21 @@ namespace EmptyStandbyList
             // 
             // notifyIcon
             // 
+            this.notifyIcon.ContextMenu = this.contextMenu1;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "EmptyStandbyList";
             this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
+            // 
+            // contextMenu1
+            // 
+            this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.Text = "E&xit";
+            this.menuItem1.Click += new System.EventHandler(this.Exit);
             // 
             // Form1
             // 
@@ -113,6 +127,8 @@ namespace EmptyStandbyList
         private System.Windows.Forms.Label intervalLbl;
         private System.Windows.Forms.TextBox intervalTb;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private ContextMenu contextMenu1;
+        private MenuItem menuItem1;
     }
 }
 

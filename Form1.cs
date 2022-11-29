@@ -28,6 +28,7 @@ namespace EmptyStandbyList
                 while (!_instance.Created)
                     Thread.Sleep(10);
                 UpdateForm();
+                Form1._instance.Invoke(new Action(() => { Form1._instance.Hide(); }));
             });
             updFrm.IsBackground = true;
             updFrm.Start();
@@ -124,15 +125,21 @@ namespace EmptyStandbyList
 
         private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            Show();
-            this.WindowState = FormWindowState.Normal;
-            notifyIcon.Visible = false;
+            if (e.Button == MouseButtons.Middle)
+            {
+                Exit(null, null);
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                Show();
+                this.WindowState = FormWindowState.Normal;
+                notifyIcon.Visible = false;
+            }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            notifyIcon.Visible = false;
-        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) => notifyIcon.Visible = false;
+
+        private void Exit(object sender, EventArgs e) => Close();
     }
     public class Config
     {
